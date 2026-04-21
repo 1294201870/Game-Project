@@ -12,10 +12,20 @@ public class PlayerController : MonoBehaviour
 
     [Header("果汁感(特效与表现)")]
     public GameObject splatPrefab;
-    // ★ 调大这个值！默认改成 0.05f，如果还被挡住，在面板里把它改成 0.1 甚至 0.2
     public float splatOffset = 0.05f;
-    // ★ 新增：要隐藏的头部模型（拖入 Head_Cube）
     public GameObject headModel;
+
+    [Header("降落伞视觉表现")]
+    public GameObject parachuteVisual;
+    public float parachuteDeployDuration = 0.5f;
+    public float parachuteRopeLength = 4f;
+
+    [Header("降落伞脱离(布娃娃)参数")]
+    public float detachedChuteLifeTime = 6f;
+    public bool detachedChuteHasCollision = true;
+    public float detachedChuteMass = 0.1f;
+    public float detachedChuteDrag = 3f;
+    public float detachedChuteAngularDrag = 2f;
 
     [Header("动态肢体绑定(程序化动画)")]
     public Transform lArmJoint;
@@ -95,6 +105,9 @@ public class PlayerController : MonoBehaviour
 
     private float parachuteDeployTime;
     private float currentSwingAmplitude;
+    private float parachuteScaleProgress = 1f;
+    private float parachuteInitialPitch;
+    private Vector3 currentParachuteUp = Vector3.up;
 
     private Transform mainCameraTransform;
     private string crashMessage = "";
@@ -107,6 +120,10 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        // 开启刚体插值，让物理引擎与画面渲染平滑对齐，消除颤动！
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+
         mainCollider = GetComponent<Collider>();
         InitRagdoll();
 
@@ -123,6 +140,12 @@ public class PlayerController : MonoBehaviour
 
         if (Camera.main != null)
             mainCameraTransform = Camera.main.transform;
+
+        if (parachuteVisual != null)
+        {
+            parachuteVisual.transform.SetParent(null);
+            parachuteVisual.SetActive(false);
+        }
     }
 
     void InitRagdoll()
@@ -185,6 +208,42 @@ public class PlayerController : MonoBehaviour
         UpdateLimbAnimations();
     }
 
+    // 降落伞的平滑跟随（世界坐标系）
+    void LateUpdate()
+    {
+        if (currentState == PlayerState.Parachuting && parachuteVisual != null && parachuteVisual.activeSelf)
+        {
+            float timeSinceDeploy = Time.time - parachuteDeployTime;
+            float controlBlend = Mathf.Clamp01(timeSinceDeploy / 1.5f);
+
+            Vector3 windDir = Vector3.up;
+            if (rb.velocity.magnitude > 0.1f)
+            {
+                windDir = -rb.velocity.normalized;
+            }
+
+            Vector3 targetUp = Vector3.Slerp(windDir, transform.up, controlBlend);
+            currentParachuteUp = Vector3.Slerp(currentParachuteUp, targetUp, Time.deltaTime * 5f);
+
+            Vector3 playerAnchor = transform.position + transform.up * 0.5f;
+            parachuteVisual.transform.position = playerAnchor + currentParachuteUp * parachuteRopeLength;
+
+            Vector3 flatForward = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+            if (flatForward.sqrMagnitude < 0.01f) flatForward = transform.forward;
+
+            Vector3 trueForward = Vector3.ProjectOnPlane(flatForward, currentParachuteUp).normalized;
+            if (trueForward.sqrMagnitude < 0.01f) trueForward = transform.forward;
+
+            Quaternion baseRot = Quaternion.LookRotation(trueForward, currentParachuteUp);
+
+            float verticalInput = Input.GetAxis("Vertical");
+            Quaternion extraPitch = Quaternion.Euler(verticalInput * 20f * controlBlend, 0, 0);
+            Quaternion targetRot = baseRot * extraPitch;
+
+            parachuteVisual.transform.rotation = Quaternion.Slerp(parachuteVisual.transform.rotation, targetRot, Time.deltaTime * 8f);
+        }
+    }
+
     void UpdateLimbAnimations()
     {
         Vector3 offsetLArm = Vector3.zero;
@@ -216,7 +275,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time - jumpTime < 0.2f) return;
 
-        if (Physics.Raycast(groundCheck.position, Vector3.down, out RaycastHit hit, groundCheckDistance))
+        // ★ 核心修复：QueryTriggerInteraction.Ignore 让摔死判定射线穿透圆环等触发器
+        if (Physics.Raycast(groundCheck.position, Vector3.down, out RaycastHit hit, groundCheckDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             if (!hit.transform.IsChildOf(transform))
             {
@@ -234,6 +294,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        // ★ 核心修复：如果碰到的物体是触发器（如光圈），无视它，绝不判定为撞墙
+        if (collision.collider.isTrigger) return;
+
         if (collision.transform.IsChildOf(transform)) return;
         if (currentState == PlayerState.Crashed) return;
 
@@ -249,7 +312,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (impactSpeed > fatalImpactSpeed)
         {
-            TriggerCrash($"时速 {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h 撞击！变成果汁！\n(按 R 键重试)", contactPoint, contactNormal);
+            TriggerCrash($"时速 {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h 撞击！变成果汁！\n(按 R ���重试)", contactPoint, contactNormal);
         }
         else if (currentState == PlayerState.Flying || currentState == PlayerState.Parachuting)
         {
@@ -267,8 +330,20 @@ public class PlayerController : MonoBehaviour
         rb.drag = 0f;
         rb.velocity = new Vector3(rb.velocity.x * 0.3f, 0, rb.velocity.z * 0.3f);
 
-        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+        // ★ 修复物理抽搐：落地时也使用刚体API旋转
+        rb.MoveRotation(Quaternion.Euler(0, transform.eulerAngles.y, 0));
         currentRoll = 0f;
+
+        if (parachuteVisual != null && parachuteVisual.activeSelf)
+        {
+            DetachParachute();
+        }
+
+        // ★ 通知 GameManager 成功落地
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndGame(true);
+        }
     }
 
     void TriggerCrash(string reason, Vector3 contactPoint, Vector3 contactNormal)
@@ -282,10 +357,17 @@ public class PlayerController : MonoBehaviour
         mainCollider.enabled = false;
         SetRagdollState(true);
 
-        // ★ 隐藏头部（爆头效果）
-        if (headModel != null)
+        if (headModel != null) headModel.SetActive(false);
+
+        if (parachuteVisual != null && parachuteVisual.activeSelf)
         {
-            headModel.SetActive(false);
+            DetachParachute();
+        }
+
+        // ★ 通知 GameManager 死亡
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndGame(false);
         }
 
         foreach (var r in ragdollRigidbodies)
@@ -299,17 +381,78 @@ public class PlayerController : MonoBehaviour
 
         if (splatPrefab != null)
         {
-            // 利用 splatOffset 把贴花沿着表面法线向外推，防止被地面吃掉
             Vector3 spawnPos = contactPoint + contactNormal * splatOffset;
-
             Quaternion spawnRot = Quaternion.LookRotation(-contactNormal);
             spawnRot *= Quaternion.Euler(0, 0, Random.Range(0f, 360f));
 
             GameObject splat = Instantiate(splatPrefab, spawnPos, spawnRot);
-
             float randomScale = Random.Range(0.8f, 1.5f);
             splat.transform.localScale = splatPrefab.transform.localScale * randomScale;
         }
+    }
+
+    void DetachParachute()
+    {
+        GameObject deadChute = Instantiate(parachuteVisual, parachuteVisual.transform.position, parachuteVisual.transform.rotation);
+        parachuteVisual.SetActive(false);
+
+        Destroy(deadChute.GetComponent<ParachuteRopes>());
+        foreach (Transform child in deadChute.transform)
+        {
+            if (child.name.StartsWith("DynamicRope")) Destroy(child.gameObject);
+        }
+
+        Transform canopy = deadChute.transform.Find("Canopy");
+        if (canopy != null)
+        {
+            Transform center = canopy.Find("Center_Canopy");
+            Transform left = canopy.Find("Left_Canopy");
+            Transform right = canopy.Find("Right_Canopy");
+
+            if (center != null && left != null && right != null)
+            {
+                Rigidbody rbCenter = AddSoftPhysics(center.gameObject);
+                Rigidbody rbLeft = AddSoftPhysics(left.gameObject);
+                Rigidbody rbRight = AddSoftPhysics(right.gameObject);
+
+                Vector3 detachVel = rb.velocity * 0.5f + Vector3.up * 4f - transform.forward * 2f;
+                rbCenter.velocity = detachVel;
+                rbLeft.velocity = detachVel;
+                rbRight.velocity = detachVel;
+
+                rbCenter.AddTorque(Random.insideUnitSphere * 5f, ForceMode.Impulse);
+
+                CharacterJoint jointL = left.gameObject.AddComponent<CharacterJoint>();
+                jointL.connectedBody = rbCenter;
+
+                CharacterJoint jointR = right.gameObject.AddComponent<CharacterJoint>();
+                jointR.connectedBody = rbCenter;
+
+                left.SetParent(deadChute.transform);
+                right.SetParent(deadChute.transform);
+                center.SetParent(deadChute.transform);
+            }
+        }
+
+        Destroy(deadChute, detachedChuteLifeTime);
+    }
+
+    Rigidbody AddSoftPhysics(GameObject obj)
+    {
+        Collider col = obj.GetComponent<Collider>();
+        if (col == null) col = obj.AddComponent<BoxCollider>();
+
+        col.isTrigger = !detachedChuteHasCollision;
+
+        Rigidbody r = obj.GetComponent<Rigidbody>();
+        if (r == null) r = obj.AddComponent<Rigidbody>();
+
+        r.mass = detachedChuteMass;
+        r.drag = detachedChuteDrag;
+        r.angularDrag = detachedChuteAngularDrag;
+        r.useGravity = true;
+
+        return r;
     }
 
     void HandleGroundMovement()
@@ -354,7 +497,9 @@ public class PlayerController : MonoBehaviour
             else moveDir = inputDir;
 
             Quaternion lookRot = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * turnSpeed);
+
+            // ★ 修复物理抽搐：使用刚体API旋转
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, lookRot, Time.deltaTime * turnSpeed));
 
             if (Time.time - lastHopTime > hopInterval && rb.velocity.y <= 0.1f)
             {
@@ -372,14 +517,29 @@ public class PlayerController : MonoBehaviour
         {
             currentState = PlayerState.Parachuting;
             targetVisualRotation = Quaternion.Euler(0f, 0f, 0f);
-            currentRoll = 0f;
 
             parachuteDeployTime = Time.time;
+            parachuteInitialPitch = currentPitch;
             currentSwingAmplitude = swingAmplitude;
 
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + parachuteUpwardJerk, rb.velocity.z);
             rb.useGravity = false;
             rb.drag = 0f;
+
+            if (parachuteVisual != null)
+            {
+                parachuteScaleProgress = 0f;
+                parachuteVisual.transform.localScale = Vector3.zero;
+
+                Vector3 windDir = -rb.velocity.normalized;
+                if (windDir == Vector3.zero) windDir = Vector3.up;
+
+                currentParachuteUp = windDir;
+                parachuteVisual.transform.position = transform.position + windDir * parachuteRopeLength;
+
+                parachuteVisual.SetActive(true);
+            }
+
             return;
         }
 
@@ -406,7 +566,9 @@ public class PlayerController : MonoBehaviour
 
         float targetRoll = -horizontal * maxRollAngle;
         currentRoll = Mathf.Lerp(currentRoll, targetRoll, Time.deltaTime * rollSpeed);
-        transform.rotation = Quaternion.Euler(currentPitch, currentYaw, currentRoll);
+
+        // ★ 修复物理抽搐：使用刚体API旋转
+        rb.MoveRotation(Quaternion.Euler(currentPitch, currentYaw, currentRoll));
 
         velocity += Vector3.down * gravityForce * Time.deltaTime;
         currentSpeed = velocity.magnitude;
@@ -431,6 +593,13 @@ public class PlayerController : MonoBehaviour
 
     void HandleParachuting()
     {
+        if (parachuteVisual != null && parachuteScaleProgress < 1f)
+        {
+            parachuteScaleProgress += Time.deltaTime / parachuteDeployDuration;
+            float scale = Mathf.Clamp01(parachuteScaleProgress);
+            parachuteVisual.transform.localScale = Vector3.one * scale;
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -438,10 +607,18 @@ public class PlayerController : MonoBehaviour
 
         float timeSinceDeploy = Time.time - parachuteDeployTime;
         currentSwingAmplitude = Mathf.Lerp(currentSwingAmplitude, 0f, Time.deltaTime * swingDamping);
-        currentPitch = Mathf.Sin(timeSinceDeploy * swingFrequency) * currentSwingAmplitude;
+
+        float swingPitch = Mathf.Sin(timeSinceDeploy * swingFrequency) * currentSwingAmplitude;
+        float transitionFactor = Mathf.Clamp01(timeSinceDeploy * 2f);
+        float baselinePitch = Mathf.Lerp(parachuteInitialPitch, 0f, transitionFactor);
+
+        currentPitch = baselinePitch + swingPitch;
+        currentRoll = Mathf.Lerp(currentRoll, 0f, Time.deltaTime * 5f);
+
         float playerInputPitch = vertical * 15f;
 
-        transform.rotation = Quaternion.Euler(currentPitch + playerInputPitch, currentYaw, 0f);
+        // ★ 修复物理抽搐：使用刚体API旋转
+        rb.MoveRotation(Quaternion.Euler(currentPitch + playerInputPitch, currentYaw, currentRoll));
 
         Vector3 vel = rb.velocity;
 

@@ -3,20 +3,36 @@
   "WorkspaceRootPath": "D:\\GP\\flyCardsuit\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\MapGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\MapGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\LandingZone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\LandingZone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\CanyonGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\CanyonGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\ProximityScoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ProximityScoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\CheckpointRing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\CheckpointRing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\CameraFollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\CameraFollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\ParachuteRopes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ParachuteRopes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\MapGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\MapGenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,39 +47,54 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MapGenerator.cs",
-              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\MapGenerator.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MapGenerator.cs",
-              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\MapGenerator.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MapGenerator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
+              "Title": "LandingZone.cs",
+              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\LandingZone.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\LandingZone.cs",
+              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\LandingZone.cs",
+              "RelativeToolTip": "Assets\\Scripts\\LandingZone.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAADwv0sAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T15:55:28.124Z",
+              "WhenOpened": "2026-04-21T14:24:42.213Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CanyonGenerator.cs",
-              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CanyonGenerator.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\CanyonGenerator.cs",
-              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CanyonGenerator.cs",
-              "RelativeToolTip": "Assets\\Scripts\\CanyonGenerator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8AAAABAAAAAAAAAA==",
+              "Title": "ProximityScoring.cs",
+              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\ProximityScoring.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ProximityScoring.cs",
+              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\ProximityScoring.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ProximityScoring.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T13:39:02.749Z"
+              "WhenOpened": "2026-04-21T14:07:11.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CheckpointRing.cs",
+              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CheckpointRing.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CheckpointRing.cs",
+              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CheckpointRing.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CheckpointRing.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T12:23:05.072Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CameraFollow.cs",
-              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CameraFollow.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollow.cs",
-              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CameraFollow.cs",
-              "RelativeToolTip": "Assets\\Scripts\\CameraFollow.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEQAAABAAAAAAAAAAA==",
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAqwFEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T10:05:11.216Z"
+              "WhenOpened": "2026-04-21T10:42:49.421Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -73,9 +104,48 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAAAIMAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAFECAAAAAAAAAAAqwJACAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T15:57:16.236Z"
+              "WhenOpened": "2026-04-18T15:57:16.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ParachuteRopes.cs",
+              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\ParachuteRopes.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ParachuteRopes.cs",
+              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\ParachuteRopes.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ParachuteRopes.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAADwvzsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T07:29:20.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MapGenerator.cs",
+              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\MapGenerator.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MapGenerator.cs",
+              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\MapGenerator.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MapGenerator.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T15:55:28.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CameraFollow.cs",
+              "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CameraFollow.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollow.cs",
+              "ToolTip": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\CameraFollow.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CameraFollow.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAADwvyoAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T10:05:11.216Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -12,11 +12,11 @@ public class CameraFollow : MonoBehaviour
     [Header("视野动态参数")]
     public float baseFOV = 60f;
     public float speedFOVFactor = 0.5f;
-    public float maxFOV = 90f;           // 稍微调小了最大FOV，防止画面边缘过度畸变导致人物显小
+    public float maxFOV = 90f;
 
     [Header("视线与动态侧倾")]
     public float lookAheadFactor = 2f;
-    public float maxLookAheadDistance = 4f; // ★ 限制预测偏移的最大距离，防止人物在屏幕中偏离过远
+    public float maxLookAheadDistance = 4f;
     [Range(0f, 1f)]
     public float cameraRollRatio = 0.4f;
 
@@ -43,16 +43,16 @@ public class CameraFollow : MonoBehaviour
         // 2. 目标位置计算
         Quaternion baseRotation = Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, cameraRoll);
         Vector3 desiredPosition = target.position + baseRotation * offset;
+
+        // ★ 优化点：在使用刚体插值(Interpolation)时，相机的跟随也应当更加平滑
         transform.position = Vector3.Lerp(transform.position, desiredPosition, positionSmooth * Time.deltaTime);
 
-        // 3. 视线预测 (加入最大距离限制 Clamp)
+        // 3. 视线预测
         Vector3 lookTarget = target.position;
         if (player != null)
         {
             Vector3 velOffset = player.GetVelocity() * 0.1f;
-            // 强行把速度带来的视线偏移限制在一个球形范围内
             velOffset = Vector3.ClampMagnitude(velOffset, maxLookAheadDistance);
-
             lookTarget += target.forward * lookAheadFactor + velOffset;
         }
 
