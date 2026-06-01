@@ -36,8 +36,13 @@ public class MainMenuManager : MonoBehaviour
     [Header("游戏主场景名")]
     public string gameSceneName = "GameScene";
 
+    [Header("挂上你的设置面板")]
+    public GameObject settingsPanel; // 关联SettingsPanel对象
+
     void Start()
     {
+        AudioManager.Instance.PlayBGM(1);
+
         foreach (var cfg in animatedButtons)
         {
             if (cfg.button == null) continue;
@@ -98,6 +103,9 @@ public class MainMenuManager : MonoBehaviour
             });
             et.triggers.Add(entryExit);
         }
+
+        // 进场时确保设置面板隐藏
+        if (settingsPanel != null) settingsPanel.SetActive(false);
     }
 
     void Update()
@@ -127,25 +135,29 @@ public class MainMenuManager : MonoBehaviour
     // ====== 按钮功能区 ======
     public void OnPlayButtonClick()
     {
+        AudioManager.Instance.PlayBGM(2);
         SceneManager.LoadScene(gameSceneName);
     }
 
     public void OnMapButtonClick()
     {
-        Debug.Log("地图选择功能后续实现，此处可弹窗、切Panel或进入地图选择场景。");
-        // 可预留打开地图选界面/场景/弹窗操作
+        Debug.Log("地图选择功能开发中，将来可弹出地图选择菜单，赋值给 GameState.selectedMapName。当前默认 GameScene");
+        // 预留接口，未来可调用地图选择界面并赋值全局地图名
+        // GameState.selectedMapName = "Map1SceneName";
     }
 
     public void OnRankButtonClick()
     {
-        Debug.Log("排行功能后续实现，此处可弹排行榜列表。");
-        // 未来实现排行榜界面/数据展示
+        Debug.Log("排行榜功能开发中，将来可打开排行榜面板~");
+        // 预留接口，未来可弹出排行榜界面
     }
 
     public void OnSettingButtonClick()
     {
-        Debug.Log("设置页功能后续实现，此处应打开设置面板。");
-        // 未来弹窗或切换到设置界面
+        if (settingsPanel != null)
+            settingsPanel.SetActive(true); // 打开设置面板
+        else
+            Debug.Log("请在Inspector中挂上SettingsPanel对象！");
     }
 
     public void OnExitButtonClick()

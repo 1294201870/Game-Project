@@ -3436,7 +3436,7 @@ MonoBehaviour:
   visuals: {fileID: 2768851}
   groundCheck: {fileID: 5227204}
   splatPrefab: {fileID: 7603426219601828108, guid: bb06cf381ffa26a46b65623a33a93b72, type: 3}
-  splatOffset: 0.5
+  splatOffset: 0.2
   headModel: {fileID: 1553222509}
   parachuteVisual: {fileID: 916124479}
   parachuteDeployDuration: 1.5
@@ -3490,6 +3490,8 @@ MonoBehaviour:
   swingFrequency: 3
   swingDamping: 0.8
   fatalImpactSpeed: 18
+  minSpeed: 1
+  maxSpeed: 50
 --- !u!114 &1612255906
 MonoBehaviour:
   m_ObjectHideFlags: 0

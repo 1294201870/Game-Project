@@ -21,6 +21,7 @@ public class CheckpointRing : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
+            AudioManager.Instance.PlayCheckpoint();
             GameManager.Instance.AddScore(scoreReward, "完美穿环！");
         }
 
@@ -30,6 +31,7 @@ public class CheckpointRing : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
+        
         // 2. ★ 核心修复：立刻禁用自身和所有子物体的碰撞体，防���物理引擎延迟判定导致玩家撞死
         Collider[] colliders = GetComponentsInChildren<Collider>();
         foreach (Collider col in colliders)

@@ -89,6 +89,10 @@ public class PlayerController : MonoBehaviour
     [Header("碰撞与死亡惩罚")]
     public float fatalImpactSpeed = 18f;
 
+    [Header("风声效果")]
+    public float minSpeed = 1f;
+    public float maxSpeed = 30f;
+
     private Rigidbody rb;
     private Collider mainCollider;
     private Rigidbody[] ragdollRigidbodies;
@@ -137,6 +141,7 @@ public class PlayerController : MonoBehaviour
     {
         targetVisualRotation = visuals.localRotation;
         landedTime = Time.time - groundedStableTime;
+
 
         if (Camera.main != null)
             mainCameraTransform = Camera.main.transform;
@@ -189,10 +194,17 @@ public class PlayerController : MonoBehaviour
     {
         if (currentState == PlayerState.Crashed && Input.GetKeyDown(KeyCode.R))
         {
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
             return;
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
 
+            SceneManager.LoadScene("MainMenu");
+            return;
+        }
         if (currentState == PlayerState.Crashed) return;
 
         CheckAltitude();
@@ -200,8 +212,8 @@ public class PlayerController : MonoBehaviour
         switch (currentState)
         {
             case PlayerState.Grounded: HandleGroundMovement(); break;
-            case PlayerState.Flying: HandleFlying(); break;
-            case PlayerState.Parachuting: HandleParachuting(); break;
+            case PlayerState.Flying: HandleFlying(); UpdateWindSfx(); break;
+            case PlayerState.Parachuting: HandleParachuting(); UpdateWindSfx(); break;
         }
 
         visuals.localRotation = Quaternion.Lerp(visuals.localRotation, targetVisualRotation, Time.deltaTime * rotationSpeed);
@@ -275,14 +287,22 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time - jumpTime < 0.2f) return;
 
-        // ★ 核心修复：QueryTriggerInteraction.Ignore 让摔死判定射线穿透圆环等触发器
+        // 核心修复：QueryTriggerInteraction.Ignore让摔死判定射线穿透圆环等触发器
         if (Physics.Raycast(groundCheck.position, Vector3.down, out RaycastHit hit, groundCheckDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             if (!hit.transform.IsChildOf(transform))
             {
-                if (rb.velocity.magnitude > fatalImpactSpeed)
+                float verticalSpeed = rb.velocity.magnitude; // 总速度，也可只用y分量
+                if (verticalSpeed > fatalImpactSpeed)
                 {
-                    TriggerCrash("速度太快！双腿粉碎，变成了一滩果汁！\n(按 R 键重试)", hit.point, hit.normal);
+                    // 原提示: "速度太快！双腿粉碎！\n(按 R 键重试,按P返回主菜单)"
+                    if (AudioManager.Instance != null)
+                        AudioManager.Instance.ForceMuteAllWind();
+                    TriggerCrash(
+                        $"速度太快！时速 {Mathf.RoundToInt(verticalSpeed * 3.6f)} km/h 双腿粉碎！\n(按 R 键重试,按P返回主菜单)",
+                        hit.point,
+                        hit.normal
+                    );
                 }
                 else if (currentState == PlayerState.Flying || currentState == PlayerState.Parachuting)
                 {
@@ -308,11 +328,16 @@ public class PlayerController : MonoBehaviour
 
         if (isHeadFirst)
         {
-            TriggerCrash("脸先着地！致命倒栽葱！变成果汁！\n(按 R 键重试)", contactPoint, contactNormal);
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.ForceMuteAllWind();
+            TriggerCrash($"脸着地!时速 {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h 撞击！\n(按 R 重试)", contactPoint, contactNormal);
         }
         else if (impactSpeed > fatalImpactSpeed)
         {
-            TriggerCrash($"时速 {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h 撞击！变成果汁！\n(按 R ���重试)", contactPoint, contactNormal);
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.ForceMuteAllWind();
+            TriggerCrash($"时速 {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h 撞击！\n(按 R 重试)", contactPoint, contactNormal);
         }
         else if (currentState == PlayerState.Flying || currentState == PlayerState.Parachuting)
         {
@@ -367,6 +392,7 @@ public class PlayerController : MonoBehaviour
         // ★ 通知 GameManager 死亡
         if (GameManager.Instance != null)
         {
+            AudioManager.Instance.PlayCrash();
             GameManager.Instance.EndGame(false);
         }
 
@@ -515,6 +541,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            AudioManager.Instance.PlayParachute();
             currentState = PlayerState.Parachuting;
             targetVisualRotation = Quaternion.Euler(0f, 0f, 0f);
 
@@ -638,6 +665,14 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = vel;
     }
+
+    void UpdateWindSfx()
+    {
+        float normSpeed = Mathf.InverseLerp(minSpeed, maxSpeed, rb.velocity.magnitude);
+        AudioManager.Instance.UpdateWindSound(normSpeed);
+    }
+
+
 
     public Vector3 GetVelocity() { return rb != null ? rb.velocity : Vector3.zero; }
     public float GetSpeed() { return rb != null ? rb.velocity.magnitude : 0f; }
