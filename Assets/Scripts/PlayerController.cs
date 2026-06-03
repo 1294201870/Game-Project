@@ -388,11 +388,14 @@ public class PlayerController : MonoBehaviour
         {
             DetachParachute();
         }
+        try { AudioManager.Instance.PlayCrash(); }
+        catch { };
+
 
         // ★ 通知 GameManager 死亡
         if (GameManager.Instance != null)
         {
-            AudioManager.Instance.PlayCrash();
+            
             GameManager.Instance.EndGame(false);
         }
 
@@ -541,7 +544,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            AudioManager.Instance.PlayParachute();
+            try { AudioManager.Instance.PlayParachute(); }
+            catch { };
             currentState = PlayerState.Parachuting;
             targetVisualRotation = Quaternion.Euler(0f, 0f, 0f);
 
@@ -669,7 +673,10 @@ public class PlayerController : MonoBehaviour
     void UpdateWindSfx()
     {
         float normSpeed = Mathf.InverseLerp(minSpeed, maxSpeed, rb.velocity.magnitude);
-        AudioManager.Instance.UpdateWindSound(normSpeed);
+        try { AudioManager.Instance.UpdateWindSound(normSpeed); }
+        catch { }
+
+
     }
 
 

@@ -13,13 +13,18 @@ public class GameManager : MonoBehaviour
     public int currentScore = 0;
     public float flightTime = 0f;
     public bool isGameActive = true;
-
+    private float gameStartTime = 0f;
     private float popupTimer = 0f;
 
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        gameStartTime = Time.time;  // ★ 新增：记录游戏开始时间
     }
 
     void Update()
@@ -77,6 +82,27 @@ public class GameManager : MonoBehaviour
                 popupText.color = Color.yellow;
                 popupTimer = 10f;
             }
+
+            // ★ 新增：保存成绩
+            SaveScoreToRanking();
+        }
+    }
+
+    /// <summary>
+    /// 将成绩保存到排行榜
+    /// </summary>
+    void SaveScoreToRanking()
+    {
+        float totalTime = Time.time - gameStartTime;
+
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddScore(currentScore, totalTime);
+            Debug.Log($"成绩已保存 - 得分: {currentScore}, 用时: {totalTime}s");
+        }
+        else
+        {
+            Debug.LogWarning("ScoreManager 实例不存在！");
         }
     }
 }

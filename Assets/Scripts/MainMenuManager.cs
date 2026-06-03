@@ -43,6 +43,12 @@ public class MainMenuManager : MonoBehaviour
     public Slider bgmSlider;
     public Slider sfxSlider;
 
+    [Header("挂上你的地图面板")]
+    public GameObject mapSelectionPanel;
+
+    [Header("排行榜面板")]
+    public GameObject rankingPanel;
+
     void Start()
     {
         AudioManager.Instance.PlayBGM(1);
@@ -70,6 +76,8 @@ public class MainMenuManager : MonoBehaviour
         {
             Debug.LogWarning("sfxSlider 未在Inspector中挂载！");
         }
+
+        
 
         // ======== 按钮动效初始化 ========
         foreach (var cfg in animatedButtons)
@@ -133,9 +141,9 @@ public class MainMenuManager : MonoBehaviour
             et.triggers.Add(entryExit);
         }
 
-        // 进场时确保设置面板隐藏
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
+        if (rankingPanel != null) rankingPanel.SetActive(false);
+        if (mapSelectionPanel != null) mapSelectionPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
     }
 
     void Update()
@@ -166,20 +174,36 @@ public class MainMenuManager : MonoBehaviour
     public void OnPlayButtonClick()
     {
         AudioManager.Instance.PlayBGM(2);
-        SceneManager.LoadScene(gameSceneName);
+
+        // 获取选中的地图场景名称
+        string selectedScene = MapManager.Instance.GetSelectedSceneName();
+        Debug.Log($"加载场景: {selectedScene}");
+
+        SceneManager.LoadScene(selectedScene);
     }
 
     public void OnMapButtonClick()
     {
-        Debug.Log("地图选择功能开发中，将来可弹出地图选择菜单，赋值给 GameState.selectedMapName。当前默认 GameScene");
-        // 预留接口，未来可调用地图选择界面并赋值全局地图名
-        // GameState.selectedMapName = "Map1SceneName";
+        // 打开地图选择面板
+        if (mapSelectionPanel != null)
+        {
+            mapSelectionPanel.SetActive(true);
+            Debug.Log("打开地图选择面板");
+        }
+        else
+            Debug.LogError("mapSelectionPanel 未在Inspector中挂载！");
     }
 
     public void OnRankButtonClick()
     {
-        Debug.Log("排行榜功能开发中，将来可打开排行榜面板~");
-        // 预留接口，未来可弹出排行榜界面
+        // ★ 修改为
+        if (rankingPanel != null)
+        {
+            rankingPanel.SetActive(true);
+            Debug.Log("打开排行榜");
+        }
+        else
+            Debug.LogError("rankingPanel 未在Inspector中挂载！");
     }
 
     public void OnSettingButtonClick()
