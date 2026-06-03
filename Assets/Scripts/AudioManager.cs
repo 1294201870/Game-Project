@@ -94,12 +94,14 @@ public class AudioManager : MonoBehaviour
     public void SetBGMVolume(float v)
     {
         bgmVolume = v;
-        if (bgmSource != null) bgmSource.volume = v;
+        if (bgmSource != null) bgmSource.volume = bgmVolume;
+        Debug.Log($"SetBGMVolume called with value: {v}, bgmSource.volume is now: {bgmSource.volume}");
     }
+
     public void SetSFXVolume(float v)
     {
         sfxVolume = v;
-        // sfxSource.volume = v; // PlayOneShot 用参数更可靠
+        Debug.Log($"SetSFXVolume called with value: {v}");
     }
 
     public void ForceMuteAllWind()

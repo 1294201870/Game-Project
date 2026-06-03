@@ -22,7 +22,7 @@ public class MainMenuManager : MonoBehaviour
     {
         public Button button;
         public Image buttonImage;
-        public Color normalColor = new Color(1f, 1f, 1f, 1f); // 加强版，明确Alpha
+        public Color normalColor = new Color(1f, 1f, 1f, 1f);
         public Color hoverColor = new Color(0.8f, 0.9f, 1f, 1f);
         public float hoverScale = 1.08f;
         public float normalScale = 1.0f;
@@ -37,12 +37,41 @@ public class MainMenuManager : MonoBehaviour
     public string gameSceneName = "GameScene";
 
     [Header("挂上你的设置面板")]
-    public GameObject settingsPanel; // 关联SettingsPanel对象
+    public GameObject settingsPanel;
+
+    [Header("Settings面板中的Slider")]
+    public Slider bgmSlider;
+    public Slider sfxSlider;
 
     void Start()
     {
         AudioManager.Instance.PlayBGM(1);
 
+        // ★ 新增：用代码动态绑定 Slider 的 OnValueChanged 事件
+        // 这样每次场景重新加载时都会重新绑定，避免事件丢失
+        if (bgmSlider != null)
+        {
+            bgmSlider.onValueChanged.RemoveAllListeners(); // 清除旧的绑定
+            bgmSlider.onValueChanged.AddListener(AudioManager.Instance.SetBGMVolume);
+            Debug.Log("BGM Slider 事件已绑定");
+        }
+        else
+        {
+            Debug.LogWarning("bgmSlider 未在Inspector中挂载！");
+        }
+
+        if (sfxSlider != null)
+        {
+            sfxSlider.onValueChanged.RemoveAllListeners(); // 清除旧的绑定
+            sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
+            Debug.Log("SFX Slider 事件已绑定");
+        }
+        else
+        {
+            Debug.LogWarning("sfxSlider 未在Inspector中挂载！");
+        }
+
+        // ======== 按钮动效初始化 ========
         foreach (var cfg in animatedButtons)
         {
             if (cfg.button == null) continue;
@@ -105,7 +134,8 @@ public class MainMenuManager : MonoBehaviour
         }
 
         // 进场时确保设置面板隐藏
-        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
     }
 
     void Update()
@@ -155,9 +185,23 @@ public class MainMenuManager : MonoBehaviour
     public void OnSettingButtonClick()
     {
         if (settingsPanel != null)
-            settingsPanel.SetActive(true); // 打开设置面板
+        {
+            settingsPanel.SetActive(true);
+
+            // 打开设置面板时，立即同步 Slider 值到当前 AudioManager 的音量
+            if (bgmSlider != null && AudioManager.Instance != null)
+            {
+                bgmSlider.value = AudioManager.Instance.bgmVolume;
+                Debug.Log($"BGM Slider 同步到: {AudioManager.Instance.bgmVolume}");
+            }
+            if (sfxSlider != null && AudioManager.Instance != null)
+            {
+                sfxSlider.value = AudioManager.Instance.sfxVolume;
+                Debug.Log($"SFX Slider 同步到: {AudioManager.Instance.sfxVolume}");
+            }
+        }
         else
-            Debug.Log("请在Inspector中挂上SettingsPanel对象！");
+            Debug.LogError("请在Inspector中挂上SettingsPanel对象！");
     }
 
     public void OnExitButtonClick()
