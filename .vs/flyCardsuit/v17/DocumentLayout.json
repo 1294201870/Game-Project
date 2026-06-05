@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\GP\\flyCardsuit\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\MainMenuManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\MainMenuManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\LandingZone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\LandingZone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\MainMenuManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\MainMenuManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GP\\flyCardsuit\\Assets\\Scripts\\MapManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -82,8 +82,7 @@
               "RelativeToolTip": "Assets\\Scripts\\RankingPanel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T16:44:40.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T16:44:40.719Z"
             },
             {
               "$type": "Document",
@@ -95,8 +94,7 @@
               "RelativeToolTip": "Assets\\Scripts\\ScoreManager.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAAADMAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T16:44:22.134Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T16:44:22.134Z"
             },
             {
               "$type": "Document",
@@ -108,8 +106,7 @@
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T16:06:54.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T16:06:54.25Z"
             },
             {
               "$type": "Document",
@@ -121,8 +118,7 @@
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAAAAoAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T10:42:49.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T10:42:49.421Z"
             },
             {
               "$type": "Document",
@@ -134,8 +130,7 @@
               "RelativeToolTip": "Assets\\Scripts\\AudioManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T23:24:59.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T23:24:59.431Z"
             },
             {
               "$type": "Document",
@@ -147,8 +142,7 @@
               "RelativeToolTip": "Assets\\Scripts\\SettingPanelUI.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T02:41:07.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T02:41:07.341Z"
             },
             {
               "$type": "Document",
@@ -160,12 +154,11 @@
               "RelativeToolTip": "Assets\\Scripts\\MapManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T15:41:31.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T15:41:31.747Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "LandingZone.cs",
               "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\LandingZone.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LandingZone.cs",
@@ -186,8 +179,7 @@
               "RelativeToolTip": "Assets\\Scripts\\CheckpointRing.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T12:23:05.072Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T12:23:05.072Z"
             },
             {
               "$type": "Document",
@@ -199,12 +191,11 @@
               "RelativeToolTip": "Assets\\Scripts\\ProximityScoring.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T14:07:11.18Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T14:07:11.18Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainMenuManager.cs",
               "DocumentMoniker": "D:\\GP\\flyCardsuit\\Assets\\Scripts\\MainMenuManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenuManager.cs",
@@ -225,8 +216,7 @@
               "RelativeToolTip": "Assets\\Scripts\\MapSelectionPanel.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAAABgAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T15:41:54.375Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-03T15:41:54.375Z"
             },
             {
               "$type": "Document",
