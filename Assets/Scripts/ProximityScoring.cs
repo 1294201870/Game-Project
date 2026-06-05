@@ -41,7 +41,7 @@ public class ProximityScoring : MonoBehaviour
                 if (scoreAccumulator >= 50f)
                 {
                     int addAmount = Mathf.FloorToInt(scoreAccumulator);
-                    GameManager.Instance.AddScore(addAmount, "极限贴地！");
+                    GameManager.Instance.AddScore(addAmount, "Skimming the ground!");
                     scoreAccumulator -= addAmount; // 扣除已加的分数
                 }
             }

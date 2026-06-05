@@ -22,7 +22,7 @@ public class CheckpointRing : MonoBehaviour
         if (GameManager.Instance != null)
         {
             AudioManager.Instance.PlayCheckpoint();
-            GameManager.Instance.AddScore(scoreReward, "完美穿环！");
+            GameManager.Instance.AddScore(scoreReward, "A perfect piercing!");
         }
 
         // 1. 隐藏所有视觉元素

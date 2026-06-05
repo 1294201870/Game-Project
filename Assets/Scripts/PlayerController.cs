@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
                     if (AudioManager.Instance != null)
                         AudioManager.Instance.ForceMuteAllWind();
                     TriggerCrash(
-                        $"速度太快！时速 {Mathf.RoundToInt(verticalSpeed * 3.6f)} km/h 双腿粉碎！\n(按 R 键重试,按P返回主菜单)",
+                        $"That's too fast! Speed: {Mathf.RoundToInt(verticalSpeed * 3.6f)} km/h. Your legs are shattered!\n(Press R to retry, press P to return to the main menu)",
                         hit.point,
                         hit.normal
                     );
@@ -331,13 +331,13 @@ public class PlayerController : MonoBehaviour
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.ForceMuteAllWind();
-            TriggerCrash($"脸着地!时速 {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h 撞击！\n(按 R 重试)", contactPoint, contactNormal);
+            TriggerCrash($"Face-first! Speed {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h!\n(Press R to try again)", contactPoint, contactNormal);
         }
         else if (impactSpeed > fatalImpactSpeed)
         {
             if (AudioManager.Instance != null)
                 AudioManager.Instance.ForceMuteAllWind();
-            TriggerCrash($"时速 {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h 撞击！\n(按 R 重试)", contactPoint, contactNormal);
+            TriggerCrash($"Speed {Mathf.RoundToInt(impactSpeed * 3.6f)} km/h!\n(Press R to try again)", contactPoint, contactNormal);
         }
         else if (currentState == PlayerState.Flying || currentState == PlayerState.Parachuting)
         {
