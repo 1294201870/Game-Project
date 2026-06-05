@@ -1,4 +1,4 @@
-# 🎮 Watermelon Skydiving Game
+# 🎮 fly Card suit Game
 
 A third-person skydiving adventure game built with Unity. Play as a watermelon, experience free flight, deploy a parachute, and land safely. Features dynamic wind sounds, physics simulation, collision detection, and a complete UI system.
 
@@ -7,21 +7,21 @@ A third-person skydiving adventure game built with Unity. Play as a watermelon, 
 - **Free Flight System**: Control direction, speed, and altitude in mid-air
 - **Parachute Deployment**: Press F to deploy and descend safely
 - **Physics Simulation**: Realistic gravity, drag, and lift mechanics
-- **Collision Detection**: Crash detection, safe landing zones, checkpoints
+- **Collision Detection**: Crash detection, checkpoints
 - **Dynamic Wind Audio**: 3-layer wind sound system that changes with flight speed
 - **Dual Input Modes**: WASD keyboard or mouse control with adjustable sensitivity
-- **Settings Panel**: Volume control (BGM/SFX), input mode switching, mouse sensitivity
+- **Settings Panel**: Volume control (BGM/SFX),
 - **Cross-Resolution Support**: Automatic UI scaling for different screen resolutions
 
 ## System Requirements
 
 | Requirement | Minimum | Recommended |
 |---|---|---|
-| OS | Windows 7+ / macOS 10.12+ | Windows 10+ / macOS 11+ |
+| OS | Windows 10+ | Windows 11 |
 | RAM | 4 GB | 8 GB |
-| GPU | Intel HD Graphics / GTX 1050 | GTX 1660+ |
+| GPU | GTX 1050 | GTX 1660+ |
 | Resolution | 1024x768+ | 1920x1080+ |
-| Unity | 2021 LTS+ | 2022 LTS+ |
+| Unity | 2022 LTS+ | 2022 LTS+ |
 
 ## Controls
 
@@ -34,16 +34,7 @@ A third-person skydiving adventure game built with Unity. Play as a watermelon, 
 | R | Restart Level |
 | P | Return to Menu |
 
-### Mouse Mode
-| Action | Function |
-|---|---|
-| Mouse Move | Control Direction |
-| Space | Jump/Takeoff |
-| F | Deploy Parachute |
-| R | Restart Level |
-| P | Return to Menu |
 
-**Change input mode in Settings panel.**
 
 ## Project Structure
 
@@ -67,8 +58,6 @@ A third-person skydiving adventure game built with Unity. Play as a watermelon, 
 
 Customize your experience in the Settings panel:
 - 🔊 BGM and SFX volume (0-100%)
-- 🖱️ Input mode (WASD or Mouse)
-- ⚙️ Mouse sensitivity (0.1x - 5x)
 
 All settings are automatically saved.
 
