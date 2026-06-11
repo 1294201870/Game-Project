@@ -1,19 +1,108 @@
-# 🎮 fly Card suit Game
+# 🎮 CardSuit Flight
 
-A third-person skydiving adventure game built with Unity. Play as a watermelon, experience free flight, deploy a parachute, and land safely. Features dynamic wind sounds, physics simulation, collision detection, and a complete UI system.
+A third-person wingsuit flying adventure game built with Unity.
 
-## Features
+Play as a watermelon-headed character, jump from mountains, experience high-speed flight, deploy a parachute, and attempt a safe landing.
 
-- **Free Flight System**: Control direction, speed, and altitude in mid-air
-- **Parachute Deployment**: Press F to deploy and descend safely
-- **Physics Simulation**: Realistic gravity, drag, and lift mechanics
-- **Collision Detection**: Crash detection, checkpoints
-- **Dynamic Wind Audio**: 3-layer wind sound system that changes with flight speed
-- **Dual Input Modes**: WASD keyboard or mouse control with adjustable sensitivity
-- **Settings Panel**: Volume control (BGM/SFX),
-- **Cross-Resolution Support**: Automatic UI scaling for different screen resolutions
+The game focuses on creating a believable wingsuit flying experience through simplified physics, risk-based scoring, dynamic audio feedback, and player-controlled flight decisions.
 
-## System Requirements
+This project was developed as part of the **Game Programming** course.
+
+---
+
+# 🌄 Game Concept
+
+CardSuit Flight is inspired by real-world parachuting and wingsuit sports.
+
+The goal was to create a safer and more accessible way to experience the excitement of wingsuit flying through a game.
+
+The player must balance:
+
+- Speed
+- Altitude
+- Risk
+- Landing safety
+
+Higher-risk flying provides higher rewards, but dangerous decisions can lead to crashes.
+
+---
+
+# ✨ Features
+
+## 🪂 Wingsuit Flight System
+
+- Control flight direction, speed, and altitude
+- Dive to gain speed
+- Pull up to gain altitude
+- Flight behaviour changes according to speed
+
+## 🪂 Parachute System
+
+- Deploy parachute using **F**
+- Parachute provides additional drag and slows descent
+- Landing still requires control and timing
+
+## ⚙️ Physics-Based Gameplay
+
+The game uses a simplified physics model including:
+
+- Gravity
+- Air resistance
+- Lift behaviour
+- Speed limits
+- Stall speed control
+
+The focus is on believable gameplay rather than a full aerodynamic simulation.
+
+## 💥 Crash System
+
+Crashes are determined by:
+
+- Impact speed
+- Collision direction
+- Player posture
+
+Examples:
+
+- High-speed collision → crash
+- Head-first landing → crash
+- Unsafe parachute landing → crash
+
+## 🏔️ Checkpoint & Scoring System
+
+Players gain points through:
+
+- Passing checkpoints
+- Flying close to terrain
+- Taking higher-risk routes
+
+The safest route is not always the highest-scoring route.
+
+## 🌬️ Dynamic Wind Audio
+
+A three-layer wind audio system changes according to flight speed:
+
+- Low speed → softer wind
+- High speed → stronger and sharper wind
+
+## 🎛️ Complete UI System
+
+Includes:
+
+- Main menu
+- Tutorial level
+- Map selection
+- Ranking system
+- Settings panel
+- Audio controls
+
+## 🖥️ Cross Resolution Support
+
+UI automatically scales for different screen resolutions.
+
+---
+
+# 💻 System Requirements
 
 | Requirement | Minimum | Recommended |
 |---|---|---|
@@ -21,54 +110,178 @@ A third-person skydiving adventure game built with Unity. Play as a watermelon, 
 | RAM | 4 GB | 8 GB |
 | GPU | GTX 1050 | GTX 1660+ |
 | Resolution | 1024x768+ | 1920x1080+ |
-| Unity | 2022 LTS+ | 2022 LTS+ |
+| Unity | 2022.3 LTS | 2022.3 LTS |
 
-## Controls
+---
 
-### Keyboard Mode (WASD)
+# 🎮 Controls
+
+## Keyboard Mode
+
 | Key | Action |
-|---|---|
-| W/A/S/D | Move |
-| Space | Jump/Takeoff |
-| F | Deploy Parachute |
-| R | Restart Level |
-| P | Return to Menu |
+|-|-|
+| W | Dive / Forward control |
+| A/D | Horizontal movement |
+| S | Pull up |
+| Space | Jump / Takeoff |
+| F | Deploy parachute |
+| R | Restart after crash |
+| P | Return to Main Menu |
+
+---
+
+# 🎯 How To Play
+
+1. Start from the mountain peak
+2. Press **Space** to jump
+3. Build up speed and enter wingsuit flight
+4. Control your flight path
+5. Fly through checkpoints or take risky routes for higher scores
+6. Deploy parachute before landing
+7. Land safely to complete the run
+
+---
+
+# 🔊 Audio System
+
+The game includes:
+
+- Background music
+- Dynamic wind effects
+- Parachute sound effects
+- Crash effects
+- Checkpoint feedback sounds
+
+Players can independently adjust:
+
+- BGM volume
+- SFX volume
+
+Settings are saved automatically.
 
 
+---
 
-## Project Structure
+# 📥 Download
+
+The latest playable versions are available here:
+
+[Game Releases](https://github.com/1294201870/Game-Project/releases)
+
+---
+
+# 🧩 External Assets & Credits
+
+This project uses third-party resources and AI-assisted content.
+
+## Unity Asset Store Assets
+
+### Rocks and Terrains Pack - Low Poly
+
+Creator:
+**HQP Studios**
+
+Source:
+Unity Asset Store
+
+License:
+Standard Unity Asset Store EULA
+
+Used for:
+
+- Mountain terrain
+- Rocks
+- Environment objects
 
 
-## How to Play
+### Farland Skies - Simple Cumulus
 
-1. **Launch**: Press Space to jump and enter flight mode
-2. **Fly**: Use WASD/Mouse to control direction
-3. **Deploy Parachute**: Press F to slow descent
-4. **Land**: Reach the ground safely without crashing
-5. **Restart**: Press R to retry, P to return to menu
+Creator:
+**Borodar**
 
-## Audio System
+Source:
+Unity Asset Store
 
-- **BGM**: Background music for menu and gameplay
-- **Dynamic Wind**: 3-layer wind sounds based on flight speed
-- **SFX**: Parachute deployment, crash, and checkpoint sounds
-- **Volume Control**: Independent BGM and SFX volume adjustment
+License:
+Standard Unity Asset Store EULA
 
-## Settings
+Used for:
 
-Customize your experience in the Settings panel:
-- 🔊 BGM and SFX volume (0-100%)
+- Sky atmosphere
+- Cloud environment
 
-All settings are automatically saved.
+---
 
-## Download
+# 🔊 Audio Resources
 
-Download the latest version from [Releases](https://github.com/1294201870/Game-Project/releases)
+## SoundDino
 
-## License
+Source:
 
-MIT License - See LICENSE file for details
+https://sounddino.com/
 
-## Author
+License:
 
-[1294201870](https://github.com/1294201870) - University Course Project
+SoundDino Free License
+
+Used for:
+
+- Sound effects
+
+Attribution is not required under the SoundDino free license.
+
+---
+
+# 🎵 AI Generated Music
+
+## Musely AI Song Generator
+
+Used for:
+
+- Background music generation
+
+The generated music was integrated into the Unity project after review and testing.
+
+---
+
+# 🤖 AI Assistance Declaration
+
+AI tools were used during development.
+
+## ChatGPT
+
+Used for:
+
+- Prototype code assistance
+- Debugging support
+- Concept development
+- Tutorial image generation
+- Concept art generation
+- Documentation assistance
+
+All AI-generated content was reviewed, modified, tested, and integrated by the developer.
+
+The final gameplay design, system integration, balancing, debugging, and implementation were completed by the developer.
+
+---
+
+# 📜 License
+
+This project is released under the MIT License.
+
+See the [LICENSE](LICENSE) file for details.
+
+Third-party assets remain under their original licenses.
+
+---
+
+# 👤 Author
+
+**Yupei Yang**
+
+GitHub:
+
+https://github.com/1294201870
+
+University Course Project  
+Game Programming
